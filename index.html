@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>夏天｜实体转网创｜实战派</title>
+  <style>
+    :root{
+      --bg:#0b0f14;
+      --card: rgba(17,24,39,.72);
+      --bd: rgba(255,255,255,.10);
+      --text:#e6edf3;
+      --muted: rgba(230,237,243,.72);
+      --chip: rgba(99,102,241,.18);
+      --chipbd: rgba(99,102,241,.35);
+      --btn:#6366f1;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; color:var(--text); background:var(--bg);
+      font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",Arial,sans-serif;
+    }
+    .hero{
+      min-height:100vh; padding:56px 20px;
+      background:
+        linear-gradient(180deg, rgba(11,15,20,.65), rgba(11,15,20,.92)),
+        radial-gradient(800px 400px at 18% 10%, rgba(99,102,241,.35), transparent 60%),
+        radial-gradient(800px 400px at 78% 0%, rgba(56,189,248,.22), transparent 60%),
+        url("bg.jpg");
+      background-size:cover;
+      background-position:center;
+    }
+    .wrap{max-width:980px; margin:0 auto;}
+    .card{
+      background:var(--card);
+      border:1px solid var(--bd);
+      border-radius:22px;
+      padding:28px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+    .top{display:flex; gap:18px; align-items:center;}
+    .avatar{
+      width:84px; height:84px; border-radius:20px;
+      background: rgba(255,255,255,.10);
+      border:1px solid rgba(255,255,255,.12);
+      overflow:hidden; flex:0 0 auto;
+      display:grid; place-items:center; font-size:32px;
+    }
+    .avatar img{width:100%; height:100%; object-fit:cover; display:block;}
+    h1{margin:0; font-size:28px; letter-spacing:.2px;}
+    .meta{margin-top:6px; color:var(--muted); line-height:1.7;}
+    .chips{margin-top:10px;}
+    .chip{
+      display:inline-block; padding:6px 10px; border-radius:999px;
+      margin:6px 6px 0 0; font-size:13px;
+      background:var(--chip); border:1px solid var(--chipbd);
+    }
+
+    .actions{margin-top:16px; display:flex; gap:10px; flex-wrap:wrap;}
+    .btn{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:10px 14px; border-radius:12px;
+      background:var(--btn); color:#fff; border:0;
+      font-weight:700; text-decoration:none; cursor:pointer;
+    }
+    .btn:hover{filter:brightness(1.06)}
+    .btn.secondary{
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.10);
+      color: var(--text);
+    }
+    .toast{
+      margin-top:10px; font-size:13px; color: rgba(230,237,243,.65);
+      min-height: 18px;
+    }
+
+    .grid{
+      display:grid; grid-template-columns: 1fr 1fr;
+      gap:14px; margin-top:18px;
+    }
+    .box{
+      background: rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:16px; padding:16px;
+    }
+    .box h2{
+      margin:0 0 10px; font-size:14px;
+      color: rgba(230,237,243,.72); letter-spacing:.6px;
+    }
+    .box p{margin:0; color: rgba(230,237,243,.86); line-height:1.75;}
+    .list{margin:0; padding-left:18px; color: rgba(230,237,243,.86); line-height:1.75;}
+    .list li{margin:6px 0;}
+    .strong{font-weight:800}
+    .num{font-variant-numeric: tabular-nums;}
+
+    .footer{
+      margin-top:14px; font-size:13px; color: rgba(230,237,243,.55);
+    }
+    @media (max-width: 820px){
+      .grid{grid-template-columns:1fr;}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="hero">
+    <div class="wrap">
+      <div class="card">
+
+        <!-- 头部名片 -->
+        <div class="top">
+          <div class="avatar">
+            <img src="avatar.jpg" alt="夏天头像" onerror="this.remove(); this.parentElement.textContent='🌞';" />
+          </div>
+          <div>
+            <h1>夏天</h1>
+            <div class="meta">江西·吉安 ｜ 技术出身 → 实体转网创 ｜ <span class="strong">实战派</span></div>
+            <div class="chips">
+              <span class="chip">实体转网创</span>
+              <span class="chip">实战派</span>
+              <span class="chip">踏实执行</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 操作区：一键复制微信 -->
+        <div class="actions">
+          <button class="btn" id="copyWxBtn" data-copy="1790002730">📋 一键复制微信：<span class="num">1790002730</span></button>
+          <button class="btn secondary" id="helloBtn">👋 打个招呼</button>
+        </div>
+        <div class="toast" id="toast"></div>
+
+        <!-- 内容区 -->
+        <div class="grid">
+
+          <section class="box">
+            <h2>介绍</h2>
+            <p>
+              技术出身，干过<span class="strong">4年通信工程/安防设计</span>，2020年转型互联网，在县城开了一家工作室。
+              从被割韭菜到现在的几个稳定盘子，主打一个<span class="strong">踏实执行</span>。
+            </p>
+          </section>
+
+          <section class="box">
+            <h2>需求</h2>
+            <p>
+              目前工作室发展遇到瓶颈，希望能交流<span class="strong">工作室的管理体系</span>，
+              以及寻找能持续深耕的<span class="strong">长线项目</span>。
+            </p>
+          </section>
+
+          <section class="box">
+            <h2>经营</h2>
+            <ul class="list">
+              <li><span class="strong">小红书虚拟：</span>深耕赛道，实测单号月变现最高 <span class="strong num">4w</span>，正在跑通矩阵放大。</li>
+              <li><span class="strong">多多视频带货：</span>百人团队年产佣金突破 <span class="strong num">100w</span>，有成熟的选品和分发 SOP。</li>
+              <li><span class="strong">快递聚合平台：</span>易达178首批合伙人，累计服务 <span class="strong num">60w+</span> 用户。</li>
+            </ul>
+          </section>
+
+          <section class="box">
+            <h2>资源</h2>
+            <ul class="list">
+              <li><span class="strong">老本行：</span>计算机通信/安防/机房/智能家居经验。</li>
+              <li><span class="strong">快递渠道：</span>API 对接、小程序 SaaS 开发。</li>
+              <li><span class="strong">实战交流：</span>多多视频选品逻辑、小红书虚拟变现玩法。</li>
+              <li><span class="strong">源头货源：</span>本地拉杆箱/行李箱工厂定制代发。</li>
+            </ul>
+          </section>
+
+        </div>
+
+        <div class="footer">
+          提示：把 <code>bg.jpg</code> 和 <code>avatar.jpg</code> 放到同文件夹里会更好看；不放也能用。
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const toast = document.getElementById('toast');
+
+    function showToast(msg){
+      toast.textContent = msg;
+      clearTimeout(showToast._t);
+      showToast._t = setTimeout(() => toast.textContent = '', 2500);
+    }
+
+    async function copyText(text){
+      try{
+        await navigator.clipboard.writeText(text);
+        return true;
+      }catch(e){
+        // 兼容某些情况下 clipboard 不可用
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.focus();
+        ta.select();
+        const ok = document.execCommand('copy');
+        document.body.removeChild(ta);
+        return ok;
+      }
+    }
+
+    document.getElementById('copyWxBtn').addEventListener('click', async (e) => {
+      const wx = e.currentTarget.getAttribute('data-copy');
+      const ok = await copyText(wx);
+      showToast(ok ? `✅ 已复制微信号：${wx}` : '❌ 复制失败：请手动选中复制');
+    });
+
+    document.getElementById('helloBtn').addEventListener('click', () => {
+      showToast('👋 你好！可以直接加我微信交流：1790002730');
+    });
+  </script>
+</body>
+</html>
