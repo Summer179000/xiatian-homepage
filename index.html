@@ -171,9 +171,6 @@
 
         </div>
 
-        <div class="footer">
-          提示：把 <code>bg.jpg</code> 和 <code>avatar.jpg</code> 放到同文件夹里会更好看；不放也能用。
-        </div>
 
       </div>
     </div>
@@ -207,11 +204,27 @@
       }
     }
 
-    document.getElementById('copyWxBtn').addEventListener('click', async (e) => {
-      const wx = e.currentTarget.getAttribute('data-copy');
-      const ok = await copyText(wx);
-      showToast(ok ? `✅ 已复制微信号：${wx}` : '❌ 复制失败：请手动选中复制');
-    });
+const copyBtn = document.getElementById('copyWxBtn');
+const copyBtnOriginalHTML = copyBtn.innerHTML;
+
+copyBtn.addEventListener('click', async (e) => {
+  const wx = e.currentTarget.getAttribute('data-copy');
+  const ok = await copyText(wx);
+
+  if (ok) {
+    // 按钮文案变成“已复制”，2秒后恢复
+    copyBtn.innerHTML = `✅ 已复制微信：<span class="num">${wx}</span>`;
+    copyBtn.disabled = true;
+    showToast(''); // 不想要下面提示就留空
+    setTimeout(() => {
+      copyBtn.innerHTML = copyBtnOriginalHTML;
+      copyBtn.disabled = false;
+    }, 2000);
+  } else {
+    showToast('❌ 复制失败：请手动选中复制');
+  }
+});
+
 
     document.getElementById('helloBtn').addEventListener('click', () => {
       showToast('👋 你好！可以直接加我微信交流：1790002730');
